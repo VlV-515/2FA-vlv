@@ -104,7 +104,7 @@ struct AccountEditorView: View {
             }
             .padding(20)
         }
-        .frame(width: 460)
+        .frame(width: 460, height: 540)
     }
 
     private var manualForm: some View {
@@ -147,7 +147,6 @@ struct AccountEditorView: View {
             }
         }
         .formStyle(.grouped)
-        .scrollDisabled(true)
         .padding(.top, 4)
     }
 
@@ -162,6 +161,7 @@ struct AccountEditorView: View {
                 .disabled(uriText.trimmingCharacters(in: .whitespaces).isEmpty)
         }
         .padding(20)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 
     private var qrForm: some View {
@@ -174,7 +174,7 @@ struct AccountEditorView: View {
             }
         }
         .padding(20)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 
     // MARK: Actions

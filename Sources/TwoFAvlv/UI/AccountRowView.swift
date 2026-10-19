@@ -65,7 +65,7 @@ struct AccountRowView: View {
         let display = code.map { format($0) }
 
         return HStack(spacing: 12) {
-            IconBadge(title: account.title)
+            IconBadge(title: account.title, size: 30)
             VStack(alignment: .leading, spacing: 2) {
                 Text(account.title)
                     .font(.system(size: 13, weight: .semibold))
@@ -80,13 +80,26 @@ struct AccountRowView: View {
             }
             Spacer(minLength: 8)
             if let display {
-                Text(masked ? settings.copy.codeHidden : display)
-                    .font(masked
-                        ? .system(size: 12)
-                        : .system(size: 24, weight: .semibold, design: .rounded).monospacedDigit())
-                    .foregroundStyle(masked ? Theme.textSecondary : (account.kind == .totp && remaining <= 5 ? Theme.danger : Color.primary))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                if masked {
+                    Button { revealUntil = Date().addingTimeInterval(10) } label: {
+                        Label(settings.copy.codeHidden, systemImage: "eye")
+                            .font(.system(size: 12))
+                            .foregroundStyle(Theme.textSecondary)
+                    }
+                    .buttonStyle(.borderless)
+                } else {
+                    Text(display)
+                        .font(.system(size: 22, weight: .semibold, design: .rounded).monospacedDigit())
+                        .foregroundStyle(account.kind == .totp && remaining <= 5 ? Theme.danger : Color.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+                Button { state.copyCode(for: account) } label: {
+                    Image(systemName: "doc.on.doc").frame(width: 26, height: 26)
+                }
+                .buttonStyle(.borderless)
+                .help(settings.copy.copyCode)
+                .accessibilityLabel(settings.copy.copyCode)
                 trailing(remaining: remaining)
             } else {
                 Label(settings.copy.invalidSecretRow, systemImage: "exclamationmark.triangle.fill")
@@ -96,13 +109,8 @@ struct AccountRowView: View {
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 4)
-        .frame(minHeight: 56)
-        .contentShape(Rectangle())
-        .onTapGesture { activate(masked: masked) }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(account.title), \(account.subtitle), \(masked ? "" : (display ?? ""))")
-        .accessibilityAddTraits(.isButton)
-        .accessibilityHint(settings.copy.copyCode)
+        .frame(minHeight: 48)
+        .accessibilityElement(children: .contain)
     }
 
     @ViewBuilder
@@ -120,13 +128,6 @@ struct AccountRowView: View {
         } else {
             CountdownRing(remaining: remaining, period: account.period)
         }
-    }
-
-    private func activate(masked: Bool) {
-        if masked {
-            revealUntil = Date().addingTimeInterval(10)
-        }
-        state.copyCode(for: account)
     }
 
     private func format(_ code: String) -> String {

@@ -82,7 +82,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showSettings() {
         if settingsWindow == nil {
             let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 520, height: 430),
+                contentRect: NSRect(x: 0, y: 0, width: 520, height: 520),
                 styleMask: [.titled, .closable],
                 backing: .buffered,
                 defer: false
@@ -100,7 +100,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showAbout() {
         if aboutWindow == nil {
             let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 340, height: 460),
+                contentRect: NSRect(x: 0, y: 0, width: 340, height: 500),
                 styleMask: [.titled, .closable],
                 backing: .buffered,
                 defer: false
@@ -119,7 +119,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let t = settings.copy
         mainWindow?.title = AppBranding.displayName
         settingsWindow?.title = t.settings
+        settingsWindow?.contentViewController?.title = t.settings
         aboutWindow?.title = t.about
+        aboutWindow?.contentViewController?.title = t.about
     }
 
     // MARK: Menu bar
@@ -137,7 +139,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
             let popover = NSPopover()
             popover.behavior = .transient
-            popover.contentSize = NSSize(width: 340, height: 460)
+            popover.contentSize = NSSize(width: 440, height: 520)
             popover.contentViewController = host(RootView(compact: true))
             self.popover = popover
         } else if let item = statusItem {

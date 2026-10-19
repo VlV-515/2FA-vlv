@@ -15,10 +15,10 @@ struct SettingsView: View {
                 .tabItem { Label(t.security, systemImage: "lock.shield") }
             DataSettings()
                 .tabItem { Label(t.data, systemImage: "externaldrive") }
-            AboutView()
+            ScrollView { AboutView() }
                 .tabItem { Label(t.aboutTab, systemImage: "info.circle") }
         }
-        .frame(width: 520, height: 430)
+        .frame(width: 520, height: 520)
     }
 }
 

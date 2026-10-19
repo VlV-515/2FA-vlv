@@ -29,7 +29,7 @@ struct RootView: View {
         }
         .animation(.easeOut(duration: 0.2), value: state.toast)
         .background(Theme.background)
-        .frame(minWidth: compact ? 340 : 380, minHeight: compact ? 440 : 420)
+        .frame(minWidth: compact ? 440 : 400, minHeight: compact ? 520 : 420)
         .sheet(item: $state.editorRequest) { request in
             AccountEditorView(request: request)
         }
