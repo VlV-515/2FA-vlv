@@ -1,6 +1,6 @@
 # Release
 
-Version scheme: `MAJOR.MINOR.PATCH`. First release: `v0.1.0`.
+Version scheme: `MAJOR.MINOR.PATCH`. First release: `v1.0.0` (first public build).
 
 ## Checklist
 
@@ -10,7 +10,7 @@ Version scheme: `MAJOR.MINOR.PATCH`. First release: `v0.1.0`.
 4. `./scripts/package-release.sh X.Y.Z`.
 5. Commit: `chore: prepare release vX.Y.Z`. Tag: `git tag vX.Y.Z`.
 6. Push and tag only when ready; create the GitHub release with the zip and `.sha256`.
-7. Upload the same files to SourceForge (see [sourceforge.md](sourceforge.md)).
+7. Prepare SourceForge files: `./scripts/prepare-sourceforge-release.sh X.Y.Z` (see [sourceforge.md](sourceforge.md)).
 
 ## Signing
 

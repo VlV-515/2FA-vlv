@@ -1,6 +1,6 @@
 # Roadmap
 
-## Done in v0.1.0
+## Done in v1.0.0
 
 TOTP/HOTP/Steam, LastPass import, otpauth links and QR scan, favorites, folders, drag ordering, brand badges, Keychain storage, Touch ID lock, auto-lock, clipboard clearing, menu bar popover, global shortcut, launch at login, English/Spanish.
 

@@ -34,7 +34,7 @@ Full reference: `docs/commands.md`.
 ## Git
 
 - Commit small focused milestones, one concern each (`feat:`, `fix:`, `docs:`, `chore:`, `build:`).
-- Do not push unless asked. Version tags `vX.Y.Z`. Current: `v0.1.0`.
+- Do not push unless asked. Version tags `vX.Y.Z`. Current: `v1.0.0`.
 - NEVER commit `data-example.json` (real LastPass backup, gitignored). Never print its secrets.
 
 ## Constraints

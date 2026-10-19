@@ -5,7 +5,7 @@ set -euo pipefail
 APP_NAME="2FA-vlv"
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
-VERSION="${1:-0.1.0}"
+VERSION="${1:-1.0.0}"
 BUILD="${BUILD_NUMBER:-1}"
 ARCHIVE_NAME="$APP_NAME-$VERSION-macos-unsigned.zip"
 ARCHIVE_PATH="$DIST_DIR/$ARCHIVE_NAME"
