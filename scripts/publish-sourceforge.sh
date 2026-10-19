@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Uploads dist/sourceforge/v<version>/ to SourceForge over rsync/SSH.
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+VERSION="${VERSION:-1.0.0}"
+TAG="v$VERSION"
+DEFAULT_SOURCEFORGE_USERNAME="vlv"
+DEFAULT_SOURCEFORGE_PROJECT="2fa-vlv"
+
+if [[ $# -gt 2 ]]; then
+  echo "Usage: $0 [SOURCEFORGE_USERNAME] [SOURCEFORGE_PROJECT]"
+  echo "Default SOURCEFORGE_PROJECT: $DEFAULT_SOURCEFORGE_PROJECT"
+  echo "Default SOURCEFORGE_USERNAME: $DEFAULT_SOURCEFORGE_USERNAME"
+  exit 64
+fi
+
+SOURCEFORGE_USERNAME="${1:-$DEFAULT_SOURCEFORGE_USERNAME}"
+SOURCEFORGE_PROJECT="${2:-$DEFAULT_SOURCEFORGE_PROJECT}"
+LOCAL_DIR="$ROOT_DIR/dist/sourceforge/$TAG"
+REMOTE_DIR="/home/frs/project/$SOURCEFORGE_PROJECT/$TAG"
+REMOTE="$SOURCEFORGE_USERNAME@frs.sourceforge.net"
+
+"$ROOT_DIR/scripts/prepare-sourceforge-release.sh" "$VERSION"
+
+ssh "$REMOTE" "mkdir -p '$REMOTE_DIR'"
+rsync -avP -e ssh "$LOCAL_DIR/" "$REMOTE:$REMOTE_DIR/"
+
+echo "Published SourceForge files to $REMOTE_DIR"
+echo "SourceForge URL: https://sourceforge.net/projects/$SOURCEFORGE_PROJECT/files/$TAG/"
