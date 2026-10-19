@@ -37,6 +37,10 @@
 
 No account. No subscription. No telemetry. No server. Just your codes.
 
+<p align="center">
+  <img src="docs/images/menu-bar-popover.png" width="360" alt="2FA-vlv menu bar popover with account list (emails and codes blurred)">
+</p>
+
 ## Why 2FA-vlv?
 
 - **Dead simple.** One window, one search box, one click to copy. Nothing else in your way.
@@ -67,7 +71,7 @@ cd 2fa-vlv
 swift build && ./scripts/package-app.sh && open dist/2FA-vlv.app
 ```
 
-Prebuilt zips will appear on the [Releases](https://github.com/VlV-515/2fa-vlv/releases) page and on [SourceForge](https://sourceforge.net/projects/2fa-vlv/). They are ad-hoc signed, so on first launch right-click the app and choose **Open**.
+Prebuilt zips are on the [Releases](https://github.com/VlV-515/2fa-vlv/releases) page and on [SourceForge](https://sourceforge.net/projects/2fa-vlv/). They are ad-hoc signed, so on first launch right-click the app and choose **Open**.
 
 ## Using 2FA-vlv
 
@@ -92,6 +96,16 @@ Every extra is a switch in Settings, so you keep the app as minimal as you like:
 | Keychain storage | Settings → Security |
 | Touch ID / password lock, auto-lock | Settings → Security |
 | Clear clipboard after copy | Settings → Security |
+
+## Screenshots
+
+| General | Security |
+| --- | --- |
+| ![General settings](docs/images/settings-general.png) | ![Security settings](docs/images/settings-security.png) |
+| **Data** | **About** |
+| ![Data settings](docs/images/settings-data.png) | ![About screen](docs/images/about.png) |
+
+Emails and codes in the screenshots are blurred.
 
 ## Language
 
