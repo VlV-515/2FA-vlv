@@ -1,0 +1,11 @@
+import AppKit
+
+@main
+struct TwoFAvlvMain {
+    @MainActor
+    static func main() {
+        let app = NSApplication.shared
+        app.setActivationPolicy(.regular)
+        app.run()
+    }
+}
