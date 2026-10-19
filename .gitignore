@@ -1,1 +1,12 @@
+.DS_Store
+.build/
+.swiftpm/
+DerivedData/
+dist/
+*.xcuserdata/
+*.xcuserstate
+*.swp
+*.swo
+
+# Personal backup used as import fixture. NEVER commit.
 data-example.json
